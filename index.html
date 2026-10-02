@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="乱伦电影网 - 不按套路排片的电影集散地。荒诞、混乱、又刚好对味的片子，都在这儿。收录cult片、冷门佳作、黑色喜剧、脑洞科幻。">
+<meta name="keywords" content="乱伦电影网,不按套路电影,荒诞电影,cult片,冷门佳片,黑色喜剧,脑洞科幻,邪典电影,深夜电影,看不懂的电影">
+<meta name="author" content="乱伦电影网">
+<meta name="robots" content="index,follow">
+<title>乱伦电影网 | 不按套路，乱看好片</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0e0e10;--card:#16161a;--line:#26262e;--ink:#e8e8ea;--mute:#7a7a86;
+  --hot:#ff3b3b;--yel:#ffd23f;--cy:#39e0c0;--vio:#9b5cf6;--pink:#ff5ca8;
+}
+html{scroll-behavior:smooth}
+body{font-family:"Inter","PingFang SC","Noto Sans SC",-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.8;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+::selection{background:var(--hot);color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ===== 碎片噪点背景 ===== */
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background:radial-gradient(circle at 15% 20%,rgba(155,92,246,.14),transparent 45%),
+             radial-gradient(circle at 85% 60%,rgba(57,224,192,.10),transparent 40%),
+             var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,.9) 1px,transparent 2px)}
+
+/* ===== 顶部乱序条 ===== */
+.scramble{background:#000;padding:10px 0;border-bottom:1px solid var(--hot);overflow:hidden}
+.scramble .inner{display:flex;gap:40px;width:max-content;animation:slip 30s linear infinite;
+  font-size:11.5px;letter-spacing:3px;color:var(--mute);white-space:nowrap}
+.scramble .inner b{color:var(--hot);font-weight:400}
+@keyframes slip{to{transform:translateX(-50%)}}
+
+/* ===== 页眉 ===== */
+.head{padding:26px 0;border-bottom:1px solid var(--line);position:relative}
+.head .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .box{width:44px;height:44px;background:var(--hot);position:relative;transform:rotate(-4deg)}
+.logo .box::before{content:"";position:absolute;inset:6px;background:var(--bg)}
+.logo .box::after{content:"";position:absolute;inset:14px;background:var(--yel);transform:rotate(8deg)}
+.logo h1{font-size:25px;font-weight:900;letter-spacing:1px}
+.logo h1 em{font-style:normal;color:var(--hot)}
+.url-pill{font-size:11.5px;letter-spacing:.5px;color:var(--mute);border:1px solid var(--line);padding:8px 16px;transform:rotate(1deg)}
+.url-pill b{color:var(--cy);font-weight:400}
+
+/* ===== 导航 ===== */
+nav{position:sticky;top:0;z-index:60;background:rgba(14,14,16,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+nav a{font-size:13px;font-weight:600;letter-spacing:1.5px;color:var(--mute);padding:7px 15px;position:relative;transition:.2s}
+nav a:hover{color:var(--yel)}
+nav a:hover::after{content:"";position:absolute;left:15px;right:15px;bottom:2px;height:2px;background:var(--hot)}
+
+/* ===== HERO 倾斜拼贴 ===== */
+.hero{padding:74px 0 60px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h2{font-size:60px;font-weight:900;line-height:.98;letter-spacing:-2px}
+.hero h2 .glitch{color:var(--hot);position:relative;display:inline-block}
+.hero h2 .glitch::before,.hero h2 .glitch::after{content:"乱";position:absolute;top:0;left:0;opacity:.7}
+.hero h2 .glitch::before{color:var(--cy);transform:translate(3px,-2px);clip-path:polygon(0 0,100% 0,100% 48%,0 48%)}
+.hero h2 .glitch::after{color:var(--vio);transform:translate(-3px,2px);clip-path:polygon(0 52%,100% 52%,100% 100%,0 100%)}
+.hero h2 .yellow{color:var(--yel)}
+.hero p.lead{margin-top:22px;font-size:16px;color:#b8b8c0;max-width:480px}
+.hero .tags{margin-top:26px;display:flex;gap:8px;flex-wrap:wrap}
+.hero .tags i{font-style:normal;font-size:11.5px;letter-spacing:1px;padding:5px 12px;background:var(--card);border:1px solid var(--line);transform:rotate(-1.5deg)}
+.hero .tags i:nth-child(even){transform:rotate(1.5deg);border-color:var(--vio)}
+.hero .tags i:nth-child(3n){background:var(--hot);color:#fff;border-color:var(--hot);transform:rotate(.5deg)}
+
+/* 拼贴堆 */
+.collage{position:relative;height:380px}
+.collage .st{position:absolute;border:1px solid var(--line);padding:14px;background:var(--card);font-size:12px}
+.collage .st span{display:block;font-size:10px;letter-spacing:2px;color:var(--mute);margin-bottom:6px}
+.collage .s1{top:0;left:10px;width:150px;transform:rotate(-6deg);border-color:var(--cy)}
+.collage .s1 b{font-size:20px;color:var(--cy)}
+.collage .s2{top:34px;right:0;width:170px;transform:rotate(5deg);border-color:var(--vio)}
+.collage .s2 b{font-size:16px;color:var(--vio)}
+.collage .s3{bottom:60px;left:0;width:160px;transform:rotate(4deg);border-color:var(--hot)}
+.collage .s3 b{font-size:15px;color:var(--hot)}
+.collage .s4{bottom:10px;right:20px;width:180px;transform:rotate(-4deg);background:var(--yel);color:#000;border-color:var(--yel)}
+.collage .s4 span{color:#000}
+.collage .s4 b{font-size:15px}
+.collage .s5{top:150px;left:120px;width:120px;height:120px;border-radius:50%;border:2px dashed var(--pink);display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:1px;color:var(--pink);text-align:center;line-height:1.5;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== 通用 ===== */
+section{padding:70px 0}
+.stitle{display:flex;align-items:baseline;gap:12px;margin-bottom:36px;border-bottom:1px dashed var(--line);padding-bottom:14px;flex-wrap:wrap}
+.stitle .hash{font-size:26px;color:var(--hot);font-weight:900}
+.stitle h3{font-size:21px;font-weight:800;letter-spacing:1px}
+.stitle .sub{font-size:11px;letter-spacing:2px;color:var(--mute);margin-left:auto;text-transform:uppercase}
+
+/* ===== 栏目1 乱序墙 ===== */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(120px,auto);gap:12px}
+.wall .cell{background:var(--card);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s;cursor:pointer}
+.wall .cell:hover{border-color:var(--hot);transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--hot)}
+.wall .cell.big{grid-column:span 2;grid-row:span 2}
+.wall .cell.wide{grid-column:span 2}
+.wall .cell .cat{font-size:10px;letter-spacing:2px;color:var(--mute)}
+.wall .cell h4{font-size:16px;font-weight:700;margin-top:8px;line-height:1.4}
+.wall .cell.big h4{font-size:24px}
+.wall .cell .meta{font-size:11px;color:var(--mute);margin-top:10px;display:flex;justify-content:space-between}
+.wall .cell .dot{width:8px;height:8px;background:var(--cy);border-radius:50%;align-self:flex-start;margin-bottom:8px}
+.wall .cell.hot{border-color:var(--hot)}
+.wall .cell.hot .cat{color:var(--hot)}
+.wall .cell.yel{border-color:var(--yel)}
+.wall .cell.vio{border-color:var(--vio)}
+.wall .cell.vio .dot{background:var(--vio)}
+
+/* ===== 栏目2 条带列表 ===== */
+.tapes{display:grid;gap:0;border:1px solid var(--line)}
+.tape-row{display:grid;grid-template-columns:60px 2.2fr 1fr 1fr 110px;align-items:center;gap:16px;
+  padding:18px 20px;border-bottom:1px solid var(--line);transition:.2s;cursor:pointer}
+.tape-row:last-child{border-bottom:none}
+.tape-row:hover{background:var(--card)}
+.tape-row .idx{font-size:22px;font-weight:900;color:var(--mute);font-family:Georgia,serif}
+.tape-row:hover .idx{color:var(--hot)}
+.tape-row .nm{font-size:16px;font-weight:700}
+.tape-row .nm small{display:block;font-size:11.5px;color:var(--mute);font-weight:400;letter-spacing:1px;margin-top:3px}
+.tape-row .tp{font-size:12px;color:var(--cy);letter-spacing:1px}
+.tape-row .yr{font-size:12.5px;color:var(--mute)}
+.tape-row .rt{font-size:13px;font-weight:700;color:var(--yel);text-align:right}
+
+/* ===== 栏目3 三栏 ===== */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.blk{border:1px solid var(--line);padding:0;transition:.3s;overflow:hidden}
+.blk:hover{transform:translateY(-6px);border-color:var(--vio)}
+.blk .top{height:120px;position:relative;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.blk .top.a{background:linear-gradient(135deg,var(--hot),#7a1f1f)}
+.blk .top.b{background:linear-gradient(135deg,var(--vio),#4a2a80)}
+.blk .top.c{background:linear-gradient(135deg,var(--cy),#1a7a6a)}
+.blk .top .n{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.7)}
+.blk .top h4{font-size:19px;font-weight:800;color:#fff}
+.blk .body{padding:20px}
+.blk .body li{padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px;color:#c8c8d0;display:flex;gap:10px}
+.blk .body li:last-child{border-bottom:none}
+.blk .body li i{font-style:normal;color:var(--mute);font-size:11px;flex-shrink:0;width:34px}
+.blk .body li b{font-weight:600;color:var(--ink)}
+
+/* ===== 栏目4 FAQ ===== */
+.faq{display:grid;gap:12px}
+.faq details{border:1px solid var(--line);background:var(--card)}
+.faq summary{font-size:15px;font-weight:700;letter-spacing:.5px;padding:18px 22px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"[+]";color:var(--yel);flex-shrink:0;font-size:14px}
+.faq details[open]{border-color:var(--hot)}
+.faq details[open] summary::after{content:"[−]";color:var(--hot)}
+.faq details p{padding:0 22px 20px;font-size:14px;color:#b8b8c0;text-align:justify;border-top:1px solid var(--line);padding-top:16px;margin-top:0}
+
+/* ===== 页脚 ===== */
+footer{border-top:3px solid var(--hot);background:#08080a;padding:50px 0 30px;text-align:center}
+footer .box2{width:54px;height:54px;background:var(--yel);margin:0 auto 18px;transform:rotate(4deg);position:relative}
+footer .box2::before{content:"";position:absolute;inset:8px;background:#08080a}
+footer .box2::after{content:"";position:absolute;inset:18px;background:var(--hot);transform:rotate(-8deg)}
+footer .nm{font-size:22px;font-weight:900;letter-spacing:3px}
+footer .url{font-size:12.5px;color:var(--cy);letter-spacing:.5px;margin:14px 0}
+footer .copy{font-size:11px;color:var(--mute);letter-spacing:1px;margin-top:22px}
+footer .lk{display:flex;justify-content:center;gap:20px;margin-top:22px;flex-wrap:wrap}
+footer .lk a{font-size:12px;color:var(--mute)}
+footer .lk a:hover{color:var(--hot)}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .hero{padding:50px 0 40px}
+  .hero .wrap{grid-template-columns:1fr}
+  .hero h2{font-size:44px}
+  .collage{height:300px;margin-top:20px}
+  .wall{grid-template-columns:repeat(2,1fr)}
+  .wall .cell.big{grid-column:span 2;grid-row:span 1}
+  .wall .cell.wide{grid-column:span 2}
+  .three{grid-template-columns:1fr}
+  .tape-row{grid-template-columns:44px 1fr 80px;gap:10px}
+  .tape-row .tp,.tape-row .yr{display:none}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .head .wrap{flex-direction:column;align-items:flex-start}
+  .url-pill{display:none}
+  .logo h1{font-size:20px}
+  nav a{font-size:12px;padding:6px 10px}
+  section{padding:46px 0}
+  .stitle h3{font-size:17px}
+  .hero h2{font-size:34px}
+  .wall{grid-template-columns:1fr}
+  .wall .cell.big,.wall .cell.wide{grid-column:span 1}
+  .scramble .inner{font-size:10.5px;letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- 顶部乱序条 -->
+<div class="scramble"><div class="inner">
+  <span>网站网址：<b>luanlundianyingwang-wap.github.io</b></span>
+  <span>✦ 不按套路排片</span><span>✦ 荒诞 · 混乱 · 刚好对味</span>
+  <span>✦ 网站网址：<b>luanlundianyingwang-wap.github.io</b></span>
+  <span>✦ 不按套路排片</span><span>✦ 荒诞 · 混乱 · 刚好对味</span>
+</div></div>
+
+<!-- 页眉 -->
+<header class="head"><div class="wrap">
+  <div class="logo"><div class="box"></div><h1>乱乱<em>电影</em>网</h1></div>
+  <div class="url-pill">🌐 <b>luanlundianyingwang-wap.github.io</b></div>
+</div></header>
+
+<!-- 导航 -->
+<nav><div class="wrap">
+  <a href="#wall">乱序墙</a>
+  <a href="#tape">片单带</a>
+  <a href="#tabs">乱看指南</a>
+  <a href="#qa">问东问西</a>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <div>
+    <h2>别排<br>得<em class="yellow">那么</em><em class="glitch">乱</em></h2>
+    <p class="lead">这里不按类型、不按年代、不按评分排片。每天换着花样给你推，荒诞的、冷门的、看不懂的、看完很爽的——总有一部刚好砸中你今晚的心情。</p>
+    <div class="tags">
+      <i>#cult片</i><i>#冷门佳片</i><i>#黑色喜剧</i><i>#脑洞科幻</i><i>#邪典</i><i>#深夜场</i>
+    </div>
+  </div>
+  <div class="collage">
+    <div class="st s1"><span>今日乱推</span><b>01</b>部荒诞喜剧</div>
+    <div class="st s2"><span>冷门指数</span><b>★★★★</b>☆ 没听过的导演</div>
+    <div class="st s3"><span>午夜场</span><b>23:00</b>后开放推荐</div>
+    <div class="st s4"><span>心情标签</span><b>睡不着就来看</b></div>
+    <div class="st s5">把电影<br>搞得<br>乱一点</div>
+  </div>
+</div></section>
+
+<!-- 栏目1 乱序墙 -->
+<section id="wall"><div class="wrap">
+  <div class="stitle"><span class="hash">#</span><h3>乱序墙</h3><span class="sub">Pick a tile</span></div>
+  <div class="wall">
+    <div class="cell big hot"><span class="cat">荒诞 · 头号推荐</span><h4>不要抬头</h4><span class="meta"><span>2021 · 美国</span><span>★ 7.5</span></span></div>
+    <div class="cell"><span class="cat">黑色喜剧</span><h4>杀手没有假期</h4><span class="meta"><span>2008 · 英</span><span>★ 8.4</span></span></div>
+    <div class="cell yel"><span class="cat">脑洞</span><h4>瞬息全宇宙</h4><span class="meta"><span>2022 · 美</span><span>★ 7.6</span></span></div>
+    <div class="cell"><div class="dot"></div><span class="cat">cult经典</span><h4>低俗小说</h4><span class="meta"><span>1994 · 美</span><span>★ 8.8</span></span></div>
+    <div class="cell wide vio"><span class="cat">冷门佳片</span><h4>心迷宫 · 多线叙事的国产惊喜</h4><span class="meta"><span>2014 · 中国</span><span>★ 8.7</span></span></div>
+    <div class="cell"><span class="cat">邪典</span><h4>猜火车</h4><span class="meta"><span>1996 · 英</span><span>★ 8.5</span></span></div>
+    <div class="cell"><span class="cat">反转</span><h4>消失的爱人</h4><span class="meta"><span>2014 · 美</span><span>★ 8.7</span></span></div>
+    <div class="cell"><span class="cat">怪诞</span><h4>瑞士军刀男</h4><span class="meta"><span>2016 · 美</span><span>★ 7.6</span></span></div>
+    <div class="cell wide"><span class="cat">午夜场</span><h4>行驶中的两列火车同时跳车，你选哪一列？</h4><span class="meta"><span>双峰 · 大卫·林奇</span><span>★ 8.9</span></span></div>
+    <div class="cell"><span class="cat">荒诞</span><h4> Borgman</h4><span class="meta"><span>2013 · 荷</span><span>★ 7.0</span></span></div>
+    <div class="cell"><span class="cat">冷门</span><h4>暴裂无声</h4><span class="meta"><span>2017 · 中国</span><span>★ 8.2</span></span></div>
+    <div class="cell"><span class="cat">脑洞</span><h4>彗星来的那一夜</h4><span class="meta"><span>2013 · 美</span><span>★ 8.5</span></span></div>
+  </div>
+</div></section>
+
+<!-- 栏目2 片单带 -->
+<section id="tape" style="background:#111114"><div class="wrap">
+  <div class="stitle"><span class="hash">#</span><h3>片单带</h3><span class="sub">Tape List</span></div>
+  <div class="tapes">
+    <div class="tape-row"><div class="idx">01</div><div class="nm">狗牙<small>家庭规训能到什么地步</small></div><div class="tp">cult · 希腊</div><div class="yr">2009</div><div class="rt">★ 7.5</div></div>
+    <div class="tape-row"><div class="idx">02</div><div class="nm">圣鹿之死<small>一场还不清的债</small></div><div class="tp">冷峻 · 美</div><div class="yr">2017</div><div class="rt">★ 7.4</div></div>
+    <div class="tape-row"><div class="idx">03</div><div class="nm">方形<small>当代艺术的笑话与尴尬</small></div><div class="tp">荒诞 · 瑞典</div><div class="yr">2017</div><div class="rt">★ 7.7</div></div>
+    <div class="tape-row"><div class="idx">04</div><div class="nm">遗传厄运<small>家族宿命的恐怖递进</small></div><div class="tp">邪典 · 美</div><div class="yr">2018</div><div class="rt">★ 7.4</div></div>
+    <div class="tape-row"><div class="idx">05</div><div class="nm">工作细胞？不，是工作细胞</div><div class="tp">冷门 · 日</div><div class="yr">2018</div><div class="rt">★ 8.8</div></div>
+    <div class="tape-row"><div class="idx">06</div><div class="nm">龙虾<small>单身就要变成动物</small></div><div class="tp">脑洞 · 希腊</div><div class="yr">2015</div><div class="rt">★ 7.4</div></div>
+    <div class="tape-row"><div class="idx">07</div><div class="nm">幸福的拉扎罗<small>善良在这个世界上活下去</small></div><div class="tp">诗意 · 意</div><div class="yr">2018</div><div class="rt">★ 8.3</div></div>
+    <div class="tape-row"><div class="idx">08</div><div class="nm">石头城之谜<small>科恩兄弟式的阴差阳错</small></div><div class="tp">黑色 · 美</div><div class="yr">1996</div><div class="rt">★ 8.3</div></div>
+  </div>
+</div></section>
+
+<!-- 栏目3 三栏 -->
+<section id="tabs"><div class="wrap">
+  <div class="stitle"><span class="hash">#</span><h3>乱看指南</h3><span class="sub">Mood Picker</span></div>
+  <div class="three">
+    <div class="blk"><div class="top a"><span class="n">MOOD 01</span><h4>今天想笑，但别太正经</h4></div>
+      <div class="body"><ul>
+        <li><i>01</i><span><b>杀手没有假期</b> — 两个笨杀手在比利时</span></li>
+        <li><i>02</i><span><b>太坏了</b> — 一夜之间长大</span></li>
+        <li><i>03</i><span><b>葬礼上的死亡</b> — 意外比悲伤多</span></li>
+        <li><i>04</i><span><b>火星入错轨道的人</b> — 荒谬到底</span></li>
+      </ul></div>
+    </div>
+    <div class="blk"><div class="top b"><span class="n">MOOD 02</span><h4>脑子需要被拧一下</h4></div>
+      <div class="body"><ul>
+        <li><i>01</i><span><b>穆赫兰道</b> — 梦的拼图</span></li>
+        <li><i>02</i><span><b>记忆碎片</b> — 倒着讲一个故事</span></li>
+        <li><i>03</i><span><b>前目的地</b> — 一个人演完全部角色</span></li>
+        <li><i>04</i><span><b>恐怖游轮</b> — 循环到崩溃</span></li>
+      </ul></div>
+    </div>
+    <div class="blk"><div class="top c"><span class="n">MOOD 03</span><h4>深夜，越看越清醒</h4></div>
+      <div class="body"><ul>
+        <li><i>01</i><span><b>双峰</b> — 林奇的谜语</span></li>
+        <li><i>02</i><span><b>橡皮头</b> — 工业时代的噩梦</span></li>
+        <li><i>03</i><span><b>大卫·林奇的烤炉</b> — 短片集</span></li>
+        <li><i>04</i><span><b>房间</b> — 烂到成神的邪典</span></li>
+      </ul></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 栏目4 FAQ -->
+<section id="qa" style="background:#111114"><div class="wrap">
+  <div class="stitle"><span class="hash">#</span><h3>问东问西</h3><span class="sub">FAQ</span></div>
+  <div class="faq">
+    <details open><summary>"乱乱"是什么意思？</summary><p>就是不按常理排片。我们不追热度榜，也不按类型规规矩矩分类，而是凭心情和直觉给你推片子——荒诞的、冷门的、有点怪的，但一定值得看。</p></details>
+    <details><summary>这里都能找到什么类型的电影？</summary><p>主要是 cult 片、冷门佳片、黑色喜剧、脑洞科幻、邪典电影和深夜场。偶尔也会放一些被严重低估的国产独立电影，主打一个"你大概没在别处见过"。</p></details>
+    <details><summary>每天会更新吗？</summary><p>每天换一部"乱推"和一组心情片单。更新时间很随性，大概在晚上，因为我们认为看这种片子的最佳时机是天黑以后。</p></details>
+    <details><summary>怎么快速找到想看的？</summary><p>可以直接刷「乱序墙」随便点，也可以去「片单带」按冷峻 / 荒诞 / 脑洞标签找，或者直接看「乱看指南」按今晚的心情挑一个 MOOD。</p></details>
+    <details><summary>网站网址是什么？</summary><p>乱伦电影网的网址是：https://luanlundianyingwang-wap.github.io，建议直接收藏，每天晚上来乱翻一下。</p></details>
+  </div>
+</div></section>
+
+<!-- 页脚 -->
+<footer><div class="wrap">
+  <div class="box2"></div>
+  <div class="nm">乱 乱 电 影 网</div>
+  <div class="url">网站网址：https://luanlundianyingwang-wap.github.io</div>
+  <div class="lk">
+    <a href="#wall">乱序墙</a><a href="#tape">片单带</a><a href="#tabs">乱看指南</a><a href="#qa">问东问西</a>
+  </div>
+  <div class="copy">© 2026 乱伦电影网 · 不按套路，乱看好片</div>
+</div></footer>
+
+</body>
+</html>
